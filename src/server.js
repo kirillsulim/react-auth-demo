@@ -77,6 +77,18 @@ server.post("/login", async (req, res) => {
     }
 });
 
+const protectedResources = [
+    "/users"
+];
+const disallowProtectedResources = (req, res, next) => {
+    if (protectedResources.includes(req.path.toLowerCase())) {
+        res.sendStatus(404);
+    } else {
+        next();
+    }
+}
+server.use(disallowProtectedResources);
+
 
 server.use(router)
 
