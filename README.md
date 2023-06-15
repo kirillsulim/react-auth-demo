@@ -5,7 +5,13 @@ This is a simple frontend authorization demo with:
 - [JWT](https://jwt.io/) as token generator/checker
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js) as password hasher.
 
+## Missing parts
+
 This demo missing important parts:
 
 1. Renew token
 2. Store token in local storage to keep authorization on tab refreshes
+
+## Saved user
+
+In db.json there is saved user with login 1234 and password 1234.
