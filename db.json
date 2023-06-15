@@ -1,1 +1,15 @@
-{}
+{
+  "users": [
+    {
+      "username": "some",
+      "password": "MyVeryPass"
+    },
+    {
+      "username": "some2",
+      "password": "MyVeryPass"
+    }
+  ],
+  "notes": [
+    "This is secret not only for authorized users"
+  ]
+}
