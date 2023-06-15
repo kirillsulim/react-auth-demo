@@ -46,6 +46,21 @@ class Client {
         console.log(res);
         return res;
     }
+
+    async getNotes(authInfo) {
+        const response = await fetch(
+            this._url("notes"),
+            {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + authInfo.token
+                }
+            }
+        );
+        const res = await response.json();
+        console.log(res);
+        return res;
+    }
 }
 
 export default Client;
