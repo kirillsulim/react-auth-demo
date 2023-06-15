@@ -1,5 +1,7 @@
 const { SignJWT, jwtVerify } = require('jose');
 const jsonServer = require('json-server')
+const bcrypt = require("bcrypt")
+
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 
@@ -39,6 +41,15 @@ async function checkToken(token) {
     }
 }
 
+const saltRounds = 10;
+async function getSaltedHash(password) {
+    return await bcrypt.hash(password, saltRounds);
+}
+
+async function checkPassword(password, saltedPassword) {
+    return await bcrypt.compare(password, saltedPassword);
+} 
+
 server.post("/registration", async (req, res) => {
     db.read();
     let users = db.get("users").value();
@@ -54,7 +65,7 @@ server.post("/registration", async (req, res) => {
     } else {
         users.push({
             username: username,
-            password: password
+            saltedPassword: await getSaltedHash(password)
         });
         db.write();
         res.json({
@@ -74,17 +85,20 @@ server.post("/login", async (req, res) => {
     const password = req.body.password;
     if (!username || !password) {
         res.status(400);
-        res.json({error: "Incorrect data."})
-    } else if (!users.find(u => u.username == username && u.password == password)) {
-        res.status(400);
-        res.json({error: `Incorrect username or password.`})
+        res.json({error: "Incorrect data."});
     } else {
-        res.json({
-            username: username,
-            token: await issueToken({
-                username: username
-            })
-        });
+        const foundUser = users.find(u => u.username == username);
+        if (foundUser && await checkPassword(password, foundUser.saltedPassword)) {
+            res.json({
+                username: username,
+                token: await issueToken({
+                    username: username
+                })
+            });
+        } else {
+            res.status(400);
+            res.json({error: `Incorrect username or password.`});
+        }
     }
 });
 

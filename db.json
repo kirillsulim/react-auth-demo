@@ -1,9 +1,8 @@
 {
   "users": [
-
     {
-      "username": "123",
-      "password": "123"
+      "username": "1234",
+      "saltedPassword": "$2b$10$pOez2udOEPvGQ0Ihkncmm.Bag2RFcbRXY2Xiub61Bxdmpe9c/kxge"
     }
   ],
   "notes": [
