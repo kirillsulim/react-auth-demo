@@ -26,8 +26,25 @@ class Client {
                 body: JSON.stringify(userData)
             }
         );
-        const jsonData = await response.json();
-        console.log(jsonData);
+        const res = await response.json();
+        console.log(res);
+        return res;
+    }
+
+    async login(userData) {
+        const response = await fetch(
+            this._url("login"),
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            }
+        );
+        const res = await response.json();
+        console.log(res);
+        return res;
     }
 }
 

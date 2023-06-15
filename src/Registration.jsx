@@ -3,16 +3,28 @@ import { useState } from "react";
 import classes from "./Login.module.scss";
 
 
-export default ({client, user}) => {
+export default ({client, user, setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState(null);
 
-    const register = () => {
-        client.register({
+    const register = async () => {
+        const result = await client.register({
             username: username,
             password: password
         });
+        if (result.error) {
+            setError(result.error);
+        } else if (!result.username || !result.token) {
+            setError("Incorrect server response");
+        } else {
+            setError(null);
+            setUser({
+                username: result.username,
+                token: result.token
+            });
+        }
     }
 
     return (
@@ -28,6 +40,7 @@ export default ({client, user}) => {
                 <button onMouseDown={() => setShowPassword(true)} onMouseUp={() => setShowPassword(false)}>Show</button>
                 <br />
                 <button onClick={register}>Register</button>
+                { error != null && <p className="error">{error}</p> }
             </fieldset>
         </div>
     )

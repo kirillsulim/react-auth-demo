@@ -55,6 +55,28 @@ server.post("/registration", async (req, res) => {
     }
 });
 
+server.post("/login", async (req, res) => {
+    db.read();
+    let users = db.get("users").value();
+
+    const username = req.body.username;
+    const password = req.body.password;
+    if (!username || !password) {
+        res.status(400);
+        res.json({error: "Incorrect data."})
+    } else if (!users.find(u => u.username == username && u.password == password)) {
+        res.status(400);
+        res.json({error: `Incorrect username or password.`})
+    } else {
+        res.json({
+            username: username,
+            token: await issueToken({
+                username: username
+            })
+        });
+    }
+});
+
 
 server.use(router)
 

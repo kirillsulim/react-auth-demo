@@ -10,8 +10,8 @@ function App({client}) {
   return (
     <div className={classes.App}>
       <UserInfo user={user}/>
-      <Registration client={client} />
-      <Login client={client} />
+      <Registration client={client} user={user} setUser={setUser}/>
+      <Login client={client} user={user} setUser={setUser}/>
     </div>
   );
 }

@@ -3,10 +3,33 @@ import { useState } from "react";
 import classes from "./Login.module.scss";
 
 
-export default ({client, user}) => {
+export default ({client, user, setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState(null);
+
+    const login = async () => {
+        const result = await client.login({
+            username: username,
+            password: password
+        });
+        if (result.error) {
+            setError(result.error);
+        } else if (!result.username || !result.token) {
+            setError("Incorrect server response");
+        } else {
+            setError(null);
+            setUser({
+                username: result.username,
+                token: result.token
+            });
+        }
+    }
+
+    const logout = () => {
+        setUser(null);
+    }
 
     return (
         <div className={classes.Login}>
@@ -21,8 +44,9 @@ export default ({client, user}) => {
                 <button onMouseDown={() => setShowPassword(true)} onMouseUp={() => setShowPassword(false)}>Show</button>
                 <br />
             </fieldset>
-            <button disabled={user != null}>Log in</button>
-            <button disabled={user == null}>Log out</button>
+            <button onClick={login} disabled={user != null}>Log in</button>
+            <button onClick={logout} disabled={user == null}>Log out</button>
+            { error != null && <p className="error">{error}</p> }
         </div>
     )
 }
