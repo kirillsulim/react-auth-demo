@@ -25,6 +25,9 @@ export default () => {
             setError("Incorrect server response");
         } else {
             setError(null);
+            setUsername("");
+            setPassword("");
+
             setUser({
                 username: result.username,
                 token: result.token
