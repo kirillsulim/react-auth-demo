@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import classes from './App.module.scss';
 import Login from '../login/Login';
 import Notes from '../notes/Notes';
 import Registration from '../registration/Registration';
 import UserInfo from '../user_info/UserInfo';
+import { useUserState } from '../../store/user_store';
 
 function App({client}) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useUserState();
 
   return (
     <div className={classes.App}>
