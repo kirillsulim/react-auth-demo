@@ -3,6 +3,7 @@ import Login from '../login/Login';
 import Notes from '../notes/Notes';
 import Registration from '../registration/Registration';
 import UserInfo from '../user_info/UserInfo';
+import { UserContext } from '../../context/UserContext';
 import { useUserState } from '../../store/user_store';
 
 function App() {
@@ -10,10 +11,12 @@ function App() {
 
   return (
     <div className={classes.App}>
-      <UserInfo user={user}/>
-      <Registration user={user} setUser={setUser}/>
-      <Login user={user} setUser={setUser}/>
-      <Notes user={user}/>
+      <UserContext.Provider value={[user, setUser]}>
+        <UserInfo />
+        <Registration />
+        <Login />
+        <Notes />
+      </UserContext.Provider>
     </div>
   );
 }

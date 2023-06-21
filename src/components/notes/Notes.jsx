@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { ClientContext } from "../../context/ClientContext";
+import { UserContext } from "../../context/UserContext";
 import classes from "./Notes.module.scss";
 
-export default ({user}) => {
+export default () => {
     const client = useContext(ClientContext);
+    const [user, _] = useContext(UserContext);
 
     const [notes, setNotes] = useState([]);
 

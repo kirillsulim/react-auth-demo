@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import { ClientContext } from "../../context/ClientContext";
+import { UserContext } from "../../context/UserContext";
 
 import classes from "./Registration.module.scss";
 
 
-export default ({user, setUser}) => {
+export default () => {
     const client = useContext(ClientContext);
+    const [user, setUser] = useContext(UserContext);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

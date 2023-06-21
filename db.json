@@ -7,6 +7,10 @@
     {
       "username": "12345",
       "saltedPassword": "$2b$10$fD2JAlyNIcFAhNN8FBdI5.Mqvwcxzk/iacmT.ZT2DPaFvfDIbS4DW"
+    },
+    {
+      "username": "123456",
+      "saltedPassword": "$2b$10$EqzH9EhfcXo42lNWLb.94.CElEpBmktbAYH2M9fEAppbVQV03.EAi"
     }
   ],
   "notes": [

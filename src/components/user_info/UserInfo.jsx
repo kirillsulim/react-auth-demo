@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import classes from "./UserInfo.module.scss";
 
-export default ({user}) => {
+export default () => {
+    const [user, _] = useContext(UserContext);
+
     return (
         <div className={classes.UserInfo}>
             <h3>User info</h3>
