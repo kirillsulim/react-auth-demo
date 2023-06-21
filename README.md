@@ -10,7 +10,6 @@ This is a simple frontend authorization demo with:
 This demo missing important parts:
 
 1. Renew token
-2. Store token in local storage to keep authorization on tab refreshes
 
 ## Saved user
 
