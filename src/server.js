@@ -59,7 +59,7 @@ server.post("/registration", async (req, res) => {
     if (!username || !password) {
         res.status(400);
         res.json({error: "Incorrect data."})
-    } else if (users.find(u => u.username == username)) {
+    } else if (users.find(u => u.username === username)) {
         res.status(400);
         res.json({error: `User '${username}' already exists.`})
     } else {
@@ -87,7 +87,7 @@ server.post("/login", async (req, res) => {
         res.status(400);
         res.json({error: "Incorrect data."});
     } else {
-        const foundUser = users.find(u => u.username == username);
+        const foundUser = users.find(u => u.username === username);
         if (foundUser && await checkPassword(password, foundUser.saltedPassword)) {
             res.json({
                 username: username,

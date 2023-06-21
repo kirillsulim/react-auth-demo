@@ -34,7 +34,7 @@ export default ({client, user, setUser}) => {
     return (
         <div className={classes.Login}>
             <h3>Login form</h3>
-            <fieldset disabled={user != null}>
+            <fieldset disabled={user !== null}>
                 { user != null && <p>Log out before log in as another user</p>}
                 <label>Login</label>
                 <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -44,8 +44,8 @@ export default ({client, user, setUser}) => {
                 <button onMouseDown={() => setShowPassword(true)} onMouseUp={() => setShowPassword(false)}>Show</button>
                 <br />
             </fieldset>
-            <button onClick={login} disabled={user != null}>Log in</button>
-            <button onClick={logout} disabled={user == null}>Log out</button>
+            <button onClick={login} disabled={user !== null}>Log in</button>
+            <button onClick={logout} disabled={user === null}>Log out</button>
             { error != null && <p className="error">{error}</p> }
         </div>
     )
