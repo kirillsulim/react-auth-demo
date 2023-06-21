@@ -11,7 +11,7 @@ export default ({client, user}) => {
 
     return (
         <div className={classes.Notes}>
-            <button onClick={loadNotes} disabled={user == null}>Load notes</button>
+            <button onClick={loadNotes} disabled={user === null}>Load notes</button>
             { notes.map(note => <p>{note}</p>)}
         </div>
     )

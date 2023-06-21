@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import classes from "./Login.module.scss";
+import classes from "./Registration.module.scss";
 
 
 export default ({client, user, setUser}) => {
