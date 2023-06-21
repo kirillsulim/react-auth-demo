@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientContext } from "../../context/ClientContext";
 import classes from "./Notes.module.scss";
 
-export default ({client, user}) => {
+export default ({user}) => {
+    const client = useContext(ClientContext);
+
     const [notes, setNotes] = useState([]);
 
     const loadNotes = async () => {

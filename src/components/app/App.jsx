@@ -5,15 +5,15 @@ import Registration from '../registration/Registration';
 import UserInfo from '../user_info/UserInfo';
 import { useUserState } from '../../store/user_store';
 
-function App({client}) {
+function App() {
   const [user, setUser] = useUserState();
 
   return (
     <div className={classes.App}>
       <UserInfo user={user}/>
-      <Registration client={client} user={user} setUser={setUser}/>
-      <Login client={client} user={user} setUser={setUser}/>
-      <Notes client={client} user={user}/>
+      <Registration user={user} setUser={setUser}/>
+      <Login user={user} setUser={setUser}/>
+      <Notes user={user}/>
     </div>
   );
 }

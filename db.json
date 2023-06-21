@@ -3,6 +3,10 @@
     {
       "username": "1234",
       "saltedPassword": "$2b$10$pOez2udOEPvGQ0Ihkncmm.Bag2RFcbRXY2Xiub61Bxdmpe9c/kxge"
+    },
+    {
+      "username": "12345",
+      "saltedPassword": "$2b$10$fD2JAlyNIcFAhNN8FBdI5.Mqvwcxzk/iacmT.ZT2DPaFvfDIbS4DW"
     }
   ],
   "notes": [
